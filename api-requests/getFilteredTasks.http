@@ -1,6 +1,0 @@
-GET http://localhost:3000/tasks?search=fun&status=OPEN
-Accept: application/json
-Cache-Control: no-cache
-
-###
-

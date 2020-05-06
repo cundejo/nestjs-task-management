@@ -1,6 +1,0 @@
-DELETE http://localhost:3000/tasks/33e06794-e860-4ca2-abc7-156925f658c5
-Accept: application/json
-Cache-Control: no-cache
-
-###
-

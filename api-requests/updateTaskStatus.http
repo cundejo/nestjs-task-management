@@ -1,6 +1,0 @@
-PATCH http://localhost:3000/tasks/883f4d98-5325-4ccc-8237-0d015effd69b/status
-Content-Type: application/json
-
-{
-  "status": "IN_PROGRESS"
-}
