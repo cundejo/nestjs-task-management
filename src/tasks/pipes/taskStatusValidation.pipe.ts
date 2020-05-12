@@ -1,5 +1,5 @@
-import { NotFoundException, PipeTransform } from '@nestjs/common';
-import { TaskStatus } from '../task.model';
+import { BadRequestException, PipeTransform } from '@nestjs/common';
+import { TaskStatus } from '../taskStatus.enum';
 
 export class TaskStatusValidationPipe implements PipeTransform {
   readonly allowedStatuses = [
@@ -10,7 +10,7 @@ export class TaskStatusValidationPipe implements PipeTransform {
 
   transform(value: any): any {
     if (!this.isStatusValid(value)) {
-      throw new NotFoundException(`${value} is not a valid status.`);
+      throw new BadRequestException(`${value} is not a valid status.`);
     }
 
     return value;
