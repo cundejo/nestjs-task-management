@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { User } from './user.entity';
 import { AuthCredentialsDto } from './dto/authCredentials.dto';
 import { ConflictException } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -15,7 +15,6 @@ export class UserRepository extends Repository<User> {
 
     try {
       await user.save();
-      // console.log('user', user);
     } catch (e) {
       if (e.code === '23505') {
         // duplicate username
