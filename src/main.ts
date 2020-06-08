@@ -10,6 +10,10 @@ async function bootstrap() {
 
   if (process.env.NODE_ENV === 'development') {
     app.enableCors();
+    logger.debug(`CORS enabled for everybody`);
+  } else {
+    app.enableCors({ origin: serverConfig.origin });
+    logger.debug(`CORS enabled for ${serverConfig.origin}`);
   }
 
   const port = process.env.PORT || serverConfig.port;

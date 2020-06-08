@@ -19,7 +19,6 @@ export class AuthController {
   }
 
   @Post('/signin')
-  @UsePipes(ValidationPipe)
   signIn(
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ accessToken: string }> {

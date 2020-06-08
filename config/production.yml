@@ -1,2 +1,5 @@
+server:
+  origin: 'https://tadeasapp.web.app/'
+
 db:
   synchronize: false

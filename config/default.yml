@@ -1,10 +1,12 @@
 server:
-  port: 3000
+  port: 3001
 
 db:
-  type: 'postgres'
-  port: 5432
-  database: 'taskmanagement'
+  #  type: 'postgres'
+  #  port: 5432
+  #  database: 'taskmanagement'
+  type: 'sqlite'
+  database: 'database/db'
 
 jwt:
   expiresIn: 3600
