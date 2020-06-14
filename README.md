@@ -1,5 +1,8 @@
 Following NestJS course https://www.udemy.com/course/nestjs-zero-to-hero/
 
+This project use NestJS, TypeORM, SQLite, Passport. And exposes a simple API to 
+- Sign Up and Sign In
+- CRUD over Tasks
 
 ## Installation
 
