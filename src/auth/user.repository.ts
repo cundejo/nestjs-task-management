@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { User } from './user.entity';
 import { AuthCredentialsDto } from './dto/authCredentials.dto';
-import { ConflictException } from '@nestjs/common';
+import { ConflictException, InternalServerErrorException } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 
 @EntityRepository(User)
@@ -9,7 +9,7 @@ export class UserRepository extends Repository<User> {
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
     const { username, password } = authCredentialsDto;
 
-    const user = new User();
+    const user = this.create();
     user.username = username;
     user.password = await UserRepository.hashPassword(password);
 
@@ -20,13 +20,11 @@ export class UserRepository extends Repository<User> {
         // duplicate username
         throw new ConflictException('Username already taken.');
       }
-      throw e;
+      throw new InternalServerErrorException();
     }
   }
 
-  async validatePassword(
-    authCredentialsDto: AuthCredentialsDto,
-  ): Promise<string> {
+  async validatePassword(authCredentialsDto: AuthCredentialsDto): Promise<string> {
     const { username, password } = authCredentialsDto;
     const user = await this.findOne({ username });
 
@@ -37,9 +35,7 @@ export class UserRepository extends Repository<User> {
     }
   }
 
-  private static async hashPassword(
-    plainTextPassword: string,
-  ): Promise<string> {
+  static async hashPassword(plainTextPassword: string): Promise<string> {
     return bcrypt.hash(plainTextPassword, 10);
   }
 }
